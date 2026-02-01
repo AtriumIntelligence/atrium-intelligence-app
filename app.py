@@ -8,17 +8,17 @@ st.set_page_config(
 # --- Dome header image ---
 col_center = st.columns([1, 2, 1])[1]
 with col_center:
-    st.image("assets/atrium_dome.png", width=600)
+    st.image("assets/atrium_dome.png", width=800)
 
 
 # --- Contact block ---
-st.markdown("""
-<div style="text-align:center; padding:20px;">
-    <h1 style="font-size:48px; margin-bottom:0;">ATRIUM INTELLIGENCE</h1>
-    <h3 style="margin-top:5px;">Jamison Welch – Founder</h3>
-    <p style="font-size:16px;">📞 860-836-7624 &nbsp;&nbsp; ✉ atriumintelligence@outlook.com</p>
-</div>
-""", unsafe_allow_html=True)
+#st.markdown("""
+#<div style="text-align:center; padding:20px;">
+#    <h1 style="font-size:48px; margin-bottom:0;">ATRIUM INTELLIGENCE</h1>
+#    <h3 style="margin-top:5px;">Jamison Welch – Founder</h3>
+#    <p style="font-size:16px;">📞 860-836-7624 &nbsp;&nbsp; ✉ atriumintelligence@outlook.com</p>
+#</div>
+#""", unsafe_allow_html=True)
 
 st.markdown("<hr style='border:1px solid #ccc;'>", unsafe_allow_html=True)
 
