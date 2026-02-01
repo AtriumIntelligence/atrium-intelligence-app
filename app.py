@@ -5,15 +5,20 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Header with logo and brand ---
-col1, col2 = st.columns([1, 3])
-
-with col1:
-    st.image("assets/AtriumIntelligenceLogo.png", use_container_width=True)
-
-with col2:
-    st.title("Atrium Intelligence")
-    st.subheader("Data, AI, and Analytics for Real-World Decisions")
+# --- Background image header ---
+st.markdown("""
+    <div style="background-image: url('assets/atrium_dome.png');
+                background-size: cover;
+                background-position: center;
+                padding: 80px 40px;
+                border-radius: 8px;
+                color: white;
+                text-align: center;">
+        <h1 style="font-size: 48px; margin-bottom: 0;">ATRIUM INTELLIGENCE</h1>
+        <h3 style="margin-top: 5px;">Jamison Welch – Founder</h3>
+        <p style="font-size: 16px;">📞 860-836-7624 &nbsp;&nbsp; ✉ atriumintelligence@outlook.com</p>
+    </div>
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
