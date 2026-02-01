@@ -45,7 +45,7 @@ st.markdown("<h2 style='color:#005f73;'>What I Do</h2>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("assets/streamlit_sites.png", width=300)
+    st.image("assets/streamlit_sites.png",use_container_width=True)
     st.markdown("""
     <div style='background-color:#fefae0; padding:15px; border-radius:8px;'>
         <h4 style='color:#bc6c25;'>Streamlit-Powered Websites</h4>
@@ -59,7 +59,7 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
-    st.image("assets/ai_automation.png", width=300)
+    st.image("assets/ai_automation.png", use_container_width=True)
     st.markdown("""
     <div style='background-color:#e0f7fa; padding:15px; border-radius:8px;'>
         <h4 style='color:#0077b6;'>AI & Automation</h4>
@@ -73,7 +73,7 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    st.image("assets/analytics_ml.png", width=300)
+    st.image("assets/analytics_ml.png", use_container_width=True)
     st.markdown("""
     <div style='background-color:#ede7f6; padding:15px; border-radius:8px;'>
         <h4 style='color:#5e548e;'>Analytics & Machine Learning</h4>
