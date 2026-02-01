@@ -1,89 +1,81 @@
 import streamlit as st
-import pandas as pd
-import altair as alt
-import os
 
-st.set_page_config(page_title="Atrium Intelligence – CT Labor Dashboard", layout="wide")
-
-st.title("Atrium Intelligence – Connecticut Labor Dashboard")
-
-csv_path = "data/CT_Labor_Stats_December2025.csv"
-
-# -----------------------------
-# Load dataset safely
-# -----------------------------
-if not os.path.exists(csv_path):
-    st.error(f"CSV file not found at: {csv_path}")
-    st.stop()
-
-df = pd.read_csv(csv_path)
-
-# -----------------------------
-# Reshape data (wide → long)
-# -----------------------------
-month_cols = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
-
-df_long = df.melt(
-    id_vars=['YEAR','INDUSTRY TITLE '],
-    value_vars=month_cols,
-    var_name='MONTH',
-    value_name='EMPLOYMENT'
+st.set_page_config(
+    page_title="Atrium Intelligence",
+    layout="wide"
 )
 
-month_map = {
-    'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,
-    'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12
-}
+# --- Header with logo and brand ---
+col1, col2 = st.columns([1, 3])
 
-df_long['MONTH_NUM'] = df_long['MONTH'].map(month_map)
-df_long['DATE'] = pd.to_datetime(df_long['YEAR'].astype(str) + '-' + df_long['MONTH_NUM'].astype(str) + '-01')
+with col1:
+    st.image("assets/atrium_logo.png", use_container_width=True)
 
-# -----------------------------
-# Sidebar filters
-# -----------------------------
-st.sidebar.header("Filters")
+with col2:
+    st.title("Atrium Intelligence")
+    st.subheader("Data, AI, and Analytics for Real-World Decisions")
 
-industry_list = sorted(df_long['INDUSTRY TITLE '].unique())
-industry = st.sidebar.selectbox("Select Industry", industry_list)
+st.markdown("---")
 
-min_year = int(df_long['YEAR'].min())
-max_year = int(df_long['YEAR'].max())
+# --- About Section ---
+st.header("About Atrium Intelligence")
 
-year_range = st.sidebar.slider(
-    "Select Year Range",
-    min_year, max_year,
-    (min_year, max_year)
-)
+st.markdown("""
+Atrium Intelligence is a data and AI consultancy focused on turning messy, real-world data 
+into clear, actionable insight.
 
-# -----------------------------
-# Filtered dataset
-# -----------------------------
-filtered = df_long[
-    (df_long['INDUSTRY TITLE '] == industry) &
-    (df_long['YEAR'] >= year_range[0]) &
-    (df_long['YEAR'] <= year_range[1])
-].sort_values("DATE")
+I help organizations:
+- Build interactive, data-driven websites and dashboards  
+- Apply AI to automate workflows and enhance decision-making  
+- Run analytics and advanced machine learning to solve real business problems  
 
-# -----------------------------
-# Main chart
-# -----------------------------
-st.subheader(f"Employment Trend: {industry}")
+Everything I build is designed to be **practical, transparent, and immediately useful**.
+""")
 
-chart = (
-    alt.Chart(filtered)
-    .mark_line(point=True)
-    .encode(
-        x=alt.X("DATE:T", title="Date"),
-        y=alt.Y("EMPLOYMENT:Q", title="Employment Level"),
-        tooltip=["YEAR","MONTH","EMPLOYMENT"]
-    )
-    .properties(height=400)
-)
+st.markdown("---")
 
-st.altair_chart(chart, use_container_width=True)
+# --- What I Do ---
+st.header("What I Do")
 
-# -----------------------------
-# Data preview
-# -----------------------------
-with st.expander("Show raw data"):
-    st.dataframe(filtered)
+col_a, col_b, col_c = st.columns(3)
+
+with col_a:
+    st.subheader("Streamlit-Powered Websites")
+    st.markdown("""
+    I build custom, interactive sites using Streamlit that act as:
+    - Live dashboards  
+    - Internal tools  
+    - Public-facing data products  
+    """)
+
+with col_b:
+    st.subheader("AI & Automation")
+    st.markdown("""
+    I help companies apply AI to:
+    - Automate workflows  
+    - Summarize and interpret data  
+    - Build intelligent assistants  
+    """)
+
+with col_c:
+    st.subheader("Analytics & Machine Learning")
+    st.markdown("""
+    From descriptive analytics to advanced ML, I:
+    - Explore and clean data  
+    - Build predictive models  
+    - Deliver clear, decision-ready outputs  
+    """)
+
+st.markdown("---")
+
+# --- Projects Teaser ---
+st.header("Check It Out")
+
+st.markdown("""
+Explore live projects built on real data to see exactly how Atrium Intelligence works in practice.
+
+For example:
+- **Connecticut Labor Market Dashboard** – interactive exploration of employment trends using public labor statistics.
+
+Use the navigation sidebar to explore **Services** and **Projects** pages.
+""")
