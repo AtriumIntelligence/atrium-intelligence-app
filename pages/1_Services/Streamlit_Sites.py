@@ -2,6 +2,9 @@ import streamlit as st
 from utils.webhook import send_to_webhook
 from utils.storage import save_submission
 
+from components.sidebar_nav import show_sidebar_nav
+show_sidebar_nav()
+
 st.set_page_config(page_title="Streamlit-Powered Websites", layout="wide")
 
 # --- Header ---

@@ -1,5 +1,8 @@
 import streamlit as st
 
+from components.sidebar_nav import show_sidebar_nav
+show_sidebar_nav()
+
 st.set_page_config(
     page_title="Atrium Intelligence",
     layout="wide"
